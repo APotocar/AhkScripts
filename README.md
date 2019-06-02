@@ -1,2 +1,2 @@
-# AhkSctipt
-Yeehaw, AutoHotkey sciripts that I use on the daily
+# AhkScript
+Yeehaw, AutoHotkey scripts that I use on the daily
