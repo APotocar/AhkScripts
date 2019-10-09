@@ -5,9 +5,11 @@
 GroupAdd, Games, ahk_exe csgo.exe
 GroupAdd, Games, ahk_exe SaintsRowIV.exe
 GroupAdd, Games, ahk_exe javaw.exe
+GroupAdd, Games, ahk_exe destiny2.exe
 SetCapsLockState, Off
 width := A_ScreenWidth - 202
 height := A_ScreenHeight - 70
+PC := 1
 
 CoordMode, Mouse, Relative
 TrayTip, , Script Launched, 16
@@ -17,7 +19,7 @@ SetTimer, Playlist, 180000
 onTop := 0
 volume := 0
 
-; send {F22}        ;Uporabljaš samo če uporabljaš Volume UP/DOWN keye!
+send {F22}        ;Uporabljaš samo če uporabljaš Volume UP/DOWN keye!
 
 Playlist:
     If WinExist("VLC media player")
@@ -128,7 +130,7 @@ F3::
         WinKill, VLC media player
         return
     }
-
+/*
 ~*Volume_Up::
     if (volume >= 12)
         return
@@ -150,6 +152,43 @@ F3::
         ;Send {Volume_Down}
         return
     }
+*/
+~>+N::
+    Send {Media_Next}
+    return
+
+#if PC = 1
+~<^NumpadIns::
+    Send {Media_Play_Pause}
+    return
+
+~<^Left::
+    Send {Media_Prev}
+    return
+
+
+~<^Down::
+if (volume <= -60)
+        return
+    else
+    {
+        volume := volume - 2
+        TrayTip,, %volume%, , 17
+        Send {Volume_Down}
+        return
+    }
+
+~<^Up::
+    if (volume >= 12)
+        return
+    else
+    {
+        volume := volume + 2
+        TrayTip,, %volume%, , 17
+        Send {Volume_Up}
+        return
+    }
+#If
 
 ~*CapsLock::
     Sleep, 100
