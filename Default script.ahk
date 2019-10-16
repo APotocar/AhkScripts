@@ -81,7 +81,7 @@ HideTrayTip:
 F4::
     if WinActive("ahk_exe Explorer.exe")
     {
-        Run, "C:\Users\Anže\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+        Run, "shell:startup"
         Return
     }
     Else
